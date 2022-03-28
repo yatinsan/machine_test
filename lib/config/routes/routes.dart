@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:machine_test/view/UserDetailPage/user_detail_page.dart';
 import 'package:machine_test/view/auth/Signinpage.dart';
 import 'package:machine_test/view/auth/landingpage.dart';
 import 'package:machine_test/view/home/homepage.dart';
@@ -12,11 +13,15 @@ class Routes {
         }
       case Screensignin.routeName:
         {
-          return _route(const Screensignin());
+          return _route(Screensignin());
         }
       case HomePage.routeName:
         {
           return _route(const HomePage());
+        }
+      case UserDetailPage.routeName:
+        {
+          return _route(const UserDetailPage());
         }
       default:
         {

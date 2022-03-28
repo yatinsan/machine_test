@@ -25,7 +25,8 @@ class YtButton extends StatelessWidget {
           style: TextStyle(fontSize: 20),
         ),
         style: ElevatedButton.styleFrom(
-            primary: Ytcolors.maincolor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+            primary: Ytcolors.maincolor,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
       ),
     );
   }

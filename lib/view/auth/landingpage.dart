@@ -51,7 +51,8 @@ class Landingpage extends StatelessWidget {
             onPressed: () {},
             child: Text(
               'Take tour',
-              style: TextStyle(color: Colors.black.withOpacity(0.6), fontSize: 17),
+              style:
+                  TextStyle(color: Colors.black.withOpacity(0.6), fontSize: 17),
             )),
         Expanded(flex: 1, child: SizedBox()),
       ],
