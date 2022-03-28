@@ -21,7 +21,7 @@ class Routes {
         }
       case UserDetailPage.routeName:
         {
-          return _route(const UserDetailPage());
+          return _route(routeSettings.arguments as UserDetailPage);
         }
       default:
         {

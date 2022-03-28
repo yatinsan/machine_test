@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:machine_test/apis/apis.dart';
 import 'package:machine_test/config/constants/colors.dart';
+import 'package:machine_test/model/employs.dart';
 import 'package:machine_test/view/UserDetailPage/user_detail_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,9 +16,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         leading: Icon(Icons.menu),
         title: Text('All Contacts'),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.format_align_left))
-        ],
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.format_align_left))],
       ),
       body: Column(
         children: [
@@ -46,35 +48,49 @@ class HomePage extends StatelessWidget {
             thickness: 1,
           ),
           Expanded(
-            child: ListView.separated(
-              itemCount: 20,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: EdgeInsets.all(10),
-                  child: ListTile(
-                    onTap: (() {
-                      Navigator.pushNamed(context, UserDetailPage.routeName);
-                    }),
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.grey,
-                      child: Text('${index + 1}'),
-                    ),
-                    title: Text(
-                      'Contact ${index + 1}',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Divider(
-                  height: 1,
-                  color: Colors.grey,
-                );
-              },
-            ),
-          ),
+              child: FutureBuilder(
+                  future: Api().getEmploys(),
+                  builder: ((context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      List<Employs> employs = snapshot.data;
+                      return ListView.separated(
+                        itemCount: employs.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          Employs employ = employs[index];
+                          return Container(
+                            padding: EdgeInsets.all(10),
+                            child: ListTile(
+                              onTap: (() {
+                                Navigator.pushNamed(context, UserDetailPage.routeName,
+                                    arguments: UserDetailPage(
+                                        name: '${employ.firstName ?? ''} ${employ.lastName ?? ''}',
+                                        email: employ.email ?? '',
+                                        landline: employ.landline.toString(),
+                                        phone: employ.mobile.toString()));
+                              }),
+                              leading: CircleAvatar(
+                                backgroundColor: Colors.grey,
+                                child: Text('${index + 1}'),
+                              ),
+                              title: Text(
+                                '${employ.firstName ?? ''} ${employ.lastName ?? ''}',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return Divider(
+                            height: 1,
+                            color: Colors.grey,
+                          );
+                        },
+                      );
+                    } else {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                  }))),
         ],
       ),
       floatingActionButton: FloatingActionButton(

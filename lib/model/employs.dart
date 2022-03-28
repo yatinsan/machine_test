@@ -1,6 +1,4 @@
-import 'package:collection/collection.dart';
-
-class Datum {
+class Employs {
   int? id;
   String? firstName;
   String? lastName;
@@ -19,7 +17,7 @@ class Datum {
   String? updatedAt;
   String? status;
 
-  Datum({
+  Employs({
     this.id,
     this.firstName,
     this.lastName,
@@ -39,7 +37,7 @@ class Datum {
     this.status,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Employs.fromJson(Map<String, dynamic> json) => Employs(
         id: json['id'] as int?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
@@ -78,32 +76,4 @@ class Datum {
         'updated_at': updatedAt,
         'status': status,
       };
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    if (other is! Datum) return false;
-    final mapEquals = const DeepCollectionEquality().equals;
-    return mapEquals(other.toJson(), toJson());
-  }
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      firstName.hashCode ^
-      lastName.hashCode ^
-      joinDate.hashCode ^
-      dateOfBirth.hashCode ^
-      designationId.hashCode ^
-      gender.hashCode ^
-      mobile.hashCode ^
-      landline.hashCode ^
-      email.hashCode ^
-      presentAddress.hashCode ^
-      permanentAddress.hashCode ^
-      profilePicture.hashCode ^
-      resume.hashCode ^
-      createdAt.hashCode ^
-      updatedAt.hashCode ^
-      status.hashCode;
 }
