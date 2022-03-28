@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:machine_test/config/constants/colors.dart';
+import 'package:machine_test/view/auth/signinpage.dart';
+import 'package:machine_test/widgets/buttonyt.dart';
 
-class ScreenLogin extends StatelessWidget {
-  static const String routeName = '/login';
-  const ScreenLogin({Key? key}) : super(key: key);
+class Landingpage extends StatelessWidget {
+  static const String routeName = '/landingpage';
+  const Landingpage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,11 @@ class ScreenLogin extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            YtButton(text: 'Sign in', onPressed: () {}),
+            YtButton(
+                text: 'Sign in',
+                onPressed: () {
+                  Navigator.of(context).pushNamed(Screensignin.routeName);
+                }),
             const SizedBox(height: 20),
             YtButton(text: 'Register', onPressed: () {}),
           ],
@@ -50,34 +56,5 @@ class ScreenLogin extends StatelessWidget {
         Expanded(flex: 1, child: SizedBox()),
       ],
     ));
-  }
-}
-
-class YtButton extends StatelessWidget {
-  final String text;
-  final Function onPressed;
-  const YtButton({
-    Key? key,
-    required this.text,
-    required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.8,
-      height: MediaQuery.of(context).size.height * 0.07,
-      child: ElevatedButton(
-        onPressed: () {
-          onPressed();
-        },
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 20),
-        ),
-        style: ElevatedButton.styleFrom(
-            primary: Ytcolors.maincolor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
-      ),
-    );
   }
 }
