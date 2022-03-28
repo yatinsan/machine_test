@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
                               }),
                               leading: CircleAvatar(
                                 backgroundColor: Colors.grey,
-                                child: Text('${index + 1}'),
+                                child: Image.asset('assets/images/admin.png'),
                               ),
                               title: Text(
                                 '${employ.firstName ?? ''} ${employ.lastName ?? ''}',
