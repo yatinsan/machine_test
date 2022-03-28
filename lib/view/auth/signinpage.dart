@@ -20,34 +20,31 @@ class Screensignin extends StatelessWidget {
         Center(
             child: Text(
           'Sign in',
-          style: TextStyle(
-              fontSize: 40,
-              color: Colors.black.withOpacity(0.7),
-              fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: 40, color: Colors.black.withOpacity(0.7), fontWeight: FontWeight.w600),
         )),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
             Container(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20,
               ),
               child: Form(
                   child: Column(
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(labelText: 'Email'),
+                    decoration: const InputDecoration(labelText: 'Email'),
                     controller: _emailController,
                   ),
                   TextFormField(
-                    decoration: InputDecoration(labelText: 'Password'),
+                    decoration: const InputDecoration(labelText: 'Password'),
                     controller: _passwordController,
                   ),
                   TextButton(
@@ -56,17 +53,14 @@ class Screensignin extends StatelessWidget {
                         width: double.infinity,
                         child: Text(
                           'Forgot password?',
-                          style: TextStyle(
-                              color: Ytcolors.maincolor, fontSize: 17),
+                          style: TextStyle(color: Ytcolors.maincolor, fontSize: 17),
                           textAlign: TextAlign.end,
                         ),
                       )),
                   YtButton(
                       text: 'Sign in',
                       onPressed: () async {
-                        if (await Api().login(
-                            email: _emailController.text,
-                            password: _passwordController.text)) {
+                        if (await Api().login(email: _emailController.text, password: _passwordController.text)) {
                           Navigator.of(context).pushNamed(HomePage.routeName);
                         } else {
                           print('Login failed');
