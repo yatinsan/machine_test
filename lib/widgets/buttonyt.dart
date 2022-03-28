@@ -13,7 +13,7 @@ class YtButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.8,
       height: MediaQuery.of(context).size.height * 0.07,
       child: ElevatedButton(
@@ -22,11 +22,10 @@ class YtButton extends StatelessWidget {
         },
         child: Text(
           text,
-          style: TextStyle(fontSize: 20),
+          style: const TextStyle(fontSize: 20),
         ),
         style: ElevatedButton.styleFrom(
-            primary: Ytcolors.maincolor,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+            primary: Ytcolors.maincolor, shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
       ),
     );
   }

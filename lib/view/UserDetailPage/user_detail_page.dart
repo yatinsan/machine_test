@@ -18,22 +18,22 @@ class UserDetailPage extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.transparent,
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.more_vert_outlined),
+              icon: const Icon(Icons.more_vert_outlined),
             ),
           ],
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               height: 450,
               width: double.infinity,
               child: Stack(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 400,
                     width: double.infinity,
                     child: Image.network(
@@ -44,7 +44,7 @@ class UserDetailPage extends StatelessWidget {
                   Positioned(
                     child: Text(
                       name,
-                      style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                     bottom: 100,
                     left: 30,
@@ -54,11 +54,11 @@ class UserDetailPage extends StatelessWidget {
                       height: 70,
                       width: 70,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 241, 33, 189),
+                        color: const Color.fromARGB(255, 241, 33, 189),
                         borderRadius: BorderRadius.circular(35),
                       ),
                       child: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.star,
                             color: Colors.white,
                           ),
@@ -71,32 +71,32 @@ class UserDetailPage extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.phone,
                 color: Colors.blue,
               ),
               title: Text(phone),
-              subtitle: Text('phone'),
-              trailing: Icon(Icons.message_sharp),
+              subtitle: const Text('phone'),
+              trailing: const Icon(Icons.message_sharp),
             ),
             ListTile(
-              leading: SizedBox(),
+              leading: const SizedBox(),
               title: Text(landline),
-              subtitle: Text('lanline'),
-              trailing: Icon(Icons.message_sharp),
+              subtitle: const Text('lanline'),
+              trailing: const Icon(Icons.message_sharp),
             ),
-            Divider(
+            const Divider(
               color: Colors.grey,
               thickness: 1,
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.email,
                 color: Colors.blue,
               ),
               title: Text(email),
-              subtitle: Text('personal'),
-              trailing: Icon(Icons.message_sharp),
+              subtitle: const Text('personal'),
+              trailing: const Icon(Icons.message_sharp),
             ),
           ],
         ));

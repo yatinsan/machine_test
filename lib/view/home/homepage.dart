@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:machine_test/apis/apis.dart';
 import 'package:machine_test/config/constants/colors.dart';
@@ -14,25 +12,25 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.menu),
-        title: Text('All Contacts'),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.format_align_left))],
+        leading: const Icon(Icons.menu),
+        title: const Text('All Contacts'),
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.format_align_left))],
       ),
       body: Column(
         children: [
-          Container(
+          SizedBox(
             height: 50,
             child: Row(
               children: [
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.search,
                     color: Colors.grey,
                     size: 35,
                   ),
                   onPressed: () {},
                 ),
-                Expanded(
+                const Expanded(
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: 'Search all Contacts',
@@ -43,7 +41,7 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          Divider(
+          const Divider(
             color: Colors.grey,
             thickness: 1,
           ),
@@ -59,7 +57,7 @@ class HomePage extends StatelessWidget {
                         itemBuilder: (context, index) {
                           Employs employ = employs[index];
                           return Container(
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             child: ListTile(
                               onTap: (() {
                                 Navigator.pushNamed(context, UserDetailPage.routeName,
@@ -75,20 +73,20 @@ class HomePage extends StatelessWidget {
                               ),
                               title: Text(
                                 '${employ.firstName ?? ''} ${employ.lastName ?? ''}',
-                                style: TextStyle(fontSize: 20),
+                                style: const TextStyle(fontSize: 20),
                               ),
                             ),
                           );
                         },
                         separatorBuilder: (context, index) {
-                          return Divider(
+                          return const Divider(
                             height: 1,
                             color: Colors.grey,
                           );
                         },
                       );
                     } else {
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     }
                   }))),
         ],
@@ -96,7 +94,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Ytcolors.maincolor,
         onPressed: () {},
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

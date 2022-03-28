@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:machine_test/apis/apis.dart';
 import 'package:machine_test/config/constants/colors.dart';
@@ -7,8 +8,8 @@ import 'package:machine_test/widgets/buttonyt.dart';
 class Screensignin extends StatelessWidget {
   static const routeName = '/signin';
   Screensignin({Key? key}) : super(key: key);
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,9 @@ class Screensignin extends StatelessWidget {
                         if (await Api().login(email: _emailController.text, password: _passwordController.text)) {
                           Navigator.of(context).pushNamed(HomePage.routeName);
                         } else {
-                          print('Login failed');
+                          if (kDebugMode) {
+                            print('Login failed');
+                          }
                         }
                       })
                 ],

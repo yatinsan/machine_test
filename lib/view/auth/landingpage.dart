@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:machine_test/config/constants/colors.dart';
-import 'package:machine_test/view/auth/signinpage.dart';
+import 'package:machine_test/view/auth/signin_page.dart';
 import 'package:machine_test/widgets/buttonyt.dart';
 
 class Landingpage extends StatelessWidget {
@@ -14,7 +14,7 @@ class Landingpage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 100,
         ),
         Center(
@@ -24,14 +24,14 @@ class Landingpage extends StatelessWidget {
             width: 200,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        Text(
+        const Text(
           'DriverEx',
           style: TextStyle(fontSize: 40, color: Ytcolors.maincolor),
         ),
-        Expanded(flex: 2, child: SizedBox()),
+        const Expanded(flex: 2, child: SizedBox()),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -44,17 +44,16 @@ class Landingpage extends StatelessWidget {
             YtButton(text: 'Register', onPressed: () {}),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
         TextButton(
             onPressed: () {},
             child: Text(
               'Take tour',
-              style:
-                  TextStyle(color: Colors.black.withOpacity(0.6), fontSize: 17),
+              style: TextStyle(color: Colors.black.withOpacity(0.6), fontSize: 17),
             )),
-        Expanded(flex: 1, child: SizedBox()),
+        const Expanded(flex: 1, child: SizedBox()),
       ],
     ));
   }
