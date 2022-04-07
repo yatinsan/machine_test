@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:machine_test/view/UserDetailPage/user_detail_page.dart';
+import 'package:machine_test/view/UserDetailPage/user_detail_provider.dart';
 import 'package:machine_test/view/auth/landingpage.dart';
 import 'package:machine_test/view/auth/signin_page.dart';
 import 'package:machine_test/view/home/homepage.dart';
+import 'package:provider/provider.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {

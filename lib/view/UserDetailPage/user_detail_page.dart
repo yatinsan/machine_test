@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:machine_test/view/UserDetailPage/user_detail_provider.dart';
+import 'package:provider/provider.dart';
 
 class UserDetailPage extends StatelessWidget {
   final String name;
@@ -50,19 +52,29 @@ class UserDetailPage extends StatelessWidget {
                     left: 30,
                   ),
                   Positioned(
-                    child: Container(
-                      height: 70,
-                      width: 70,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 241, 33, 189),
-                        borderRadius: BorderRadius.circular(35),
+                    child: ChangeNotifierProvider(
+                      create: (_) => UserDetailProvider(),
+                      child: Builder(
+                        builder: (context) {
+                          return Container(
+                            height: 70,
+                            width: 70,
+                            decoration: BoxDecoration(
+                              color: context.watch<UserDetailProvider>().favorite ? Color.fromARGB(255, 241, 33, 189) : Colors.grey,
+                              borderRadius: BorderRadius.circular(35),
+                            ),
+                            child: IconButton(
+
+                                icon: const Icon(
+                                  Icons.star,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  context.read<UserDetailProvider>().toggleFavorite();
+                                }),
+                          );
+                        }
                       ),
-                      child: IconButton(
-                          icon: const Icon(
-                            Icons.star,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {}),
                     ),
                     right: 30,
                     bottom: 25,

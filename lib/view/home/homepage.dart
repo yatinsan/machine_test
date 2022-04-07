@@ -26,15 +26,18 @@ class HomePage extends StatelessWidget {
                   icon: const Icon(
                     Icons.search,
                     color: Colors.grey,
-                    size: 35,
+                    size: 30,
                   ),
                   onPressed: () {},
                 ),
                 const Expanded(
                   child: TextField(
+                    style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
                       hintText: 'Search all Contacts',
                       border: InputBorder.none,
+                      hintStyle: TextStyle(color: Colors.grey,),
+
                     ),
                   ),
                 ),
