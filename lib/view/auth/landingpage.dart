@@ -3,9 +3,10 @@ import 'package:machine_test/config/constants/colors.dart';
 import 'package:machine_test/view/auth/signin_page.dart';
 import 'package:machine_test/widgets/buttonyt.dart';
 
-class Landingpage extends StatelessWidget {
+class LandingPage extends StatelessWidget {
   static const String routeName = '/landingpage';
-  const Landingpage({Key? key}) : super(key: key);
+
+  const LandingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,20 +30,40 @@ class Landingpage extends StatelessWidget {
         ),
         const Text(
           'DriverEx',
-          style: TextStyle(fontSize: 40, color: Ytcolors.maincolor),
+          style: TextStyle(
+              fontSize: 40,
+              color: Ytcolors.primary,
+              fontWeight: FontWeight.bold),
         ),
         const Expanded(flex: 2, child: SizedBox()),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            YtButton(
-                text: 'Sign in',
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.9,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // YtButton(
+              //     text: 'Sign in',
+              //     onPressed: () {
+              //       Navigator.of(context).pushNamed(Screensignin.routeName);
+              //     }),
+              ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed(Screensignin.routeName);
-                }),
-            const SizedBox(height: 20),
-            YtButton(text: 'Register', onPressed: () {}),
-          ],
+                },
+                child: Text('Sign In',
+                    style: Theme.of(context).textTheme.displayMedium),
+              ),
+              const SizedBox(height: 10),
+              // YtButton(text: 'Register', onPressed: () {}),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  'Register',
+                  style: Theme.of(context).textTheme.displayMedium,
+                ),
+              ),
+            ],
+          ),
         ),
         const SizedBox(
           height: 50,
@@ -50,8 +71,9 @@ class Landingpage extends StatelessWidget {
         TextButton(
             onPressed: () {},
             child: Text(
-              'Take tour',
-              style: TextStyle(color: Colors.black.withOpacity(0.6), fontSize: 17),
+              'Take Tour',
+              style:
+                  TextStyle(color: Colors.black.withOpacity(0.6), fontSize: 17),
             )),
         const Expanded(flex: 1, child: SizedBox()),
       ],

@@ -54,21 +54,29 @@ class Screensignin extends StatelessWidget {
                         width: double.infinity,
                         child: Text(
                           'Forgot password?',
-                          style: TextStyle(color: Ytcolors.maincolor, fontSize: 17),
+                          style: TextStyle(color: Ytcolors.primary, fontSize: 17),
                           textAlign: TextAlign.end,
                         ),
                       )),
-                  YtButton(
-                      text: 'Sign in',
-                      onPressed: () async {
-                        if (await Api().login(email: _emailController.text, password: _passwordController.text)) {
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      child:  Text('Sign in',style: Theme.of(context).textTheme.displayMedium),
+                      onPressed: ()async{
+                        if (await ApiDio.login(email: _emailController.text, password: _passwordController.text)) {
                           Navigator.of(context).pushNamed(HomePage.routeName);
                         } else {
-                          if (kDebugMode) {
-                            print('Login failed');
-                          }
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(backgroundColor: Colors.red,
+                              content: Text('Login failed',),
+                            ),
+                          );
+
                         }
-                      })
+                      }
+                    ),
+                  )
                 ],
               )),
             ),

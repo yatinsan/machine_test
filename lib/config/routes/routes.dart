@@ -1,17 +1,20 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:machine_test/view/UserDetailPage/user_detail_page.dart';
 import 'package:machine_test/view/UserDetailPage/user_detail_provider.dart';
 import 'package:machine_test/view/auth/landingpage.dart';
 import 'package:machine_test/view/auth/signin_page.dart';
 import 'package:machine_test/view/home/homepage.dart';
+import 'package:machine_test/view/home/home_page_provider.dart';
 import 'package:provider/provider.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case Landingpage.routeName:
+      case LandingPage.routeName:
         {
-          return _route(const Landingpage());
+          return _route(const LandingPage());
         }
       case Screensignin.routeName:
         {
@@ -19,7 +22,7 @@ class Routes {
         }
       case HomePage.routeName:
         {
-          return _route(const HomePage());
+          return _route(ChangeNotifierProvider(create: (context)=> HomePageProvider(),child: HomePage()));
         }
       case UserDetailPage.routeName:
         {
@@ -27,7 +30,7 @@ class Routes {
         }
       default:
         {
-          return _route(const Landingpage());
+          return _route(const LandingPage());
         }
     }
   }

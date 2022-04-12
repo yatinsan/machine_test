@@ -1,116 +1,198 @@
 import 'package:flutter/material.dart';
-import 'package:machine_test/view/UserDetailPage/user_detail_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:machine_test/view/UserDetailPage/user_detail_cubit.dart';
 
 class UserDetailPage extends StatelessWidget {
   final String name;
   final String email;
   final String phone;
   final String landline;
-
-  const UserDetailPage({Key? key, this.name = '', this.email = '', this.phone = '', this.landline = ''})
-      : super(key: key);
+  final fav = UserDetailCubit();
   static const String routeName = '/userDetail';
+
+  UserDetailPage(
+      {Key? key,
+      this.name = '',
+      this.email = '',
+      this.phone = '',
+      this.landline = ''})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.more_vert_outlined),
-            ),
-          ],
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 450,
-              width: double.infinity,
-              child: Stack(
-                children: [
-                  SizedBox(
-                    height: 400,
-                    width: double.infinity,
-                    child: Image.network(
-                      'https://i.pinimg.com/564x/6e/d9/5a/6ed95a844d95ea4b79e03677c8364c13.jpg',
-                      fit: BoxFit.cover,
+      backgroundColor: Colors.white,
+      extendBodyBehindAppBar: true,
+      body: CustomScrollView(
+
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 300,
+            pinned: true,
+            snap: true,
+            floating: true,
+            actions: [
+              IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.more_vert_outlined),
+              ),
+            ],
+            flexibleSpace: FlexibleSpaceBar(
+
+              background: Container(
+                color: Colors.white,
+                height: 500,
+                child: Stack(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 290,
+                      child: Image.network(
+                        'https://i.pinimg.com/564x/6e/d9/5a/6ed95a844d95ea4b79e03677c8364c13.jpg',
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    child: Text(
-                      name,
-                      style: const TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
+                    Positioned(
+                      top: 240,
+                      left: 50,
+                      child: Text(
+                        name,
+                        style: TextStyle(color: Colors.white, fontSize: 35),
+                      ),
                     ),
-                    bottom: 100,
-                    left: 30,
-                  ),
-                  Positioned(
-                    child: ChangeNotifierProvider(
-                      create: (_) => UserDetailProvider(),
-                      child: Builder(
-                        builder: (context) {
+                    Positioned(
+                      top: 250,
+                      right: 30,
+                      child: BlocConsumer(
+                        listener: (context, state) {},
+                        bloc: fav,
+                        builder: (context, state) {
                           return Container(
                             height: 70,
                             width: 70,
                             decoration: BoxDecoration(
-                              color: context.watch<UserDetailProvider>().favorite ? Color.fromARGB(255, 241, 33, 189) : Colors.grey,
+                              color: fav.state
+                                  ? const Color.fromARGB(255, 241, 33, 189)
+                                  : Colors.grey,
                               borderRadius: BorderRadius.circular(35),
                             ),
                             child: IconButton(
-
                                 icon: const Icon(
                                   Icons.star,
                                   color: Colors.white,
                                 ),
                                 onPressed: () {
-                                  context.read<UserDetailProvider>().toggleFavorite();
+                                  fav.toggle();
                                 }),
                           );
-                        }
+                        },
                       ),
                     ),
-                    right: 30,
-                    bottom: 25,
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                ListTile(
+                  leading: const Icon(
+                    Icons.phone,
+                    color: Color.fromARGB(255, 241, 33, 189),
                   ),
-                ],
-              ),
+                  title: Text(phone),
+                  subtitle: const Text('phone'),
+                  trailing: const Icon(Icons.message),
+                ),
+                ListTile(
+                  leading: const SizedBox(),
+                  title: Text(landline),
+                  subtitle: const Text('landline'),
+                  trailing: const Icon(Icons.message_sharp),
+                ),
+                const Divider(
+                  color: Colors.grey,
+                  thickness: 1,
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.email,
+                    color: Color.fromARGB(255, 241, 33, 189),
+                  ),
+                  title: Text(email),
+                  subtitle: const Text('personal'),
+                  trailing: const Icon(Icons.message_sharp),
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.phone,
+                    color: Color.fromARGB(255, 241, 33, 189),
+                  ),
+                  title: Text(phone),
+                  subtitle: const Text('phone'),
+                  trailing: const Icon(Icons.message),
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.phone,
+                    color: Color.fromARGB(255, 241, 33, 189),
+                  ),
+                  title: Text(phone),
+                  subtitle: const Text('phone'),
+                  trailing: const Icon(Icons.message),
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.phone,
+                    color: Color.fromARGB(255, 241, 33, 189),
+                  ),
+                  title: Text(phone),
+                  subtitle: const Text('phone'),
+                  trailing: const Icon(Icons.message),
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.phone,
+                    color: Color.fromARGB(255, 241, 33, 189),
+                  ),
+                  title: Text(phone),
+                  subtitle: const Text('phone'),
+                  trailing: const Icon(Icons.message),
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.phone,
+                    color: Color.fromARGB(255, 241, 33, 189),
+                  ),
+                  title: Text(phone),
+                  subtitle: const Text('phone'),
+                  trailing: const Icon(Icons.message),
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.phone,
+                    color: Color.fromARGB(255, 241, 33, 189),
+                  ),
+                  title: Text(phone),
+                  subtitle: const Text('phone'),
+                  trailing: const Icon(Icons.message),
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.phone,
+                    color: Color.fromARGB(255, 241, 33, 189),
+                  ),
+                  title: Text(phone),
+                  subtitle: const Text('phone'),
+                  trailing: const Icon(Icons.message),
+                ),
+              ],
             ),
-            ListTile(
-              leading: const Icon(
-                Icons.phone,
-                color: Colors.blue,
-              ),
-              title: Text(phone),
-              subtitle: const Text('phone'),
-              trailing: const Icon(Icons.message_sharp),
-            ),
-            ListTile(
-              leading: const SizedBox(),
-              title: Text(landline),
-              subtitle: const Text('lanline'),
-              trailing: const Icon(Icons.message_sharp),
-            ),
-            const Divider(
-              color: Colors.grey,
-              thickness: 1,
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.email,
-                color: Colors.blue,
-              ),
-              title: Text(email),
-              subtitle: const Text('personal'),
-              trailing: const Icon(Icons.message_sharp),
-            ),
-          ],
-        ));
+          )
+        ],
+      ),
+    );
   }
 }
